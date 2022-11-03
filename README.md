@@ -65,5 +65,5 @@ pluginManagement {
 
 ### 手动安装
 
-1. 从 [Releases](https://github.com/cssxsh/spring-boot-mirai-starter/releases) 或者 [Maven](https://repo1.maven.org/maven2/xyz/cssxsh/mirai/spring-boot-mirai-starter/) 下载 `mirai2.jar`
+1. 从 [Releases](https://github.com/cssxsh/spring-boot-mirai/releases) 或者 [Maven](https://repo1.maven.org/maven2/xyz/cssxsh/mirai/spring-boot-mirai/) 下载 `mirai2.jar`
 2. 将其放入 `plugins` 文件夹中
