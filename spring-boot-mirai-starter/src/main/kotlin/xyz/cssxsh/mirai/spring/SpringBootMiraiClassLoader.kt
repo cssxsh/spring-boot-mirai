@@ -26,7 +26,7 @@ public class SpringBootMiraiClassLoader(starter: JvmPlugin) :
     }
 
     override fun loadClass(name: String): Class<*> {
-        if (name.startsWith("com.ali")) return super.loadClass(name)
+        if (name.startsWith("com.ali")) throw IllegalArgumentException("ali! $name")
         for ((prefix, classLoader) in classLoaders) {
             if (name.startsWith(prefix).not()) continue
             val oc = ClassUtils.overrideThreadContextClassLoader(classLoader)
@@ -42,7 +42,7 @@ public class SpringBootMiraiClassLoader(starter: JvmPlugin) :
     }
 
     override fun getResource(name: String): URL? {
-        if (name.startsWith("com/ali")) return super.getResource(name)
+        if (name.startsWith("com/ali")) throw IllegalArgumentException("ali! $name")
         for ((_, classLoader) in classLoaders) {
             val oc = ClassUtils.overrideThreadContextClassLoader(classLoader)
             return try {
@@ -55,7 +55,7 @@ public class SpringBootMiraiClassLoader(starter: JvmPlugin) :
     }
 
     override fun getResources(name: String): Enumeration<URL> {
-        if (name.startsWith("com/ali")) return super.getResources(name)
+        if (name.startsWith("com/ali")) throw IllegalArgumentException("ali! $name")
         return object : Enumeration<URL> {
             val iterator = iterator<URL> {
                 for ((_, classLoader) in classLoaders) {
