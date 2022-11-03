@@ -10,8 +10,8 @@ import java.util.*
 
 public class SpringBootMiraiClassLoader(starter: JvmPlugin) :
     SecureClassLoader("spring-boot-mirai", starter::class.java.classLoader) {
-    private val classLoaders: List<ClassLoader> = buildList {
-        add(starter::class.java.classLoader)
+    private val classLoaders: Map<String, ClassLoader> = buildMap {
+        put(starter::class.java.packageName, starter::class.java.classLoader)
         for (plugin in PluginManager.plugins) {
             if (plugin !is JvmPlugin) continue
             if (plugin.description.dependencies.none { it.id == starter.id }) continue
@@ -21,13 +21,14 @@ public class SpringBootMiraiClassLoader(starter: JvmPlugin) :
             if (dependencies.readText().lines().any { it.startsWith("com.ali")  }) {
                 throw IllegalArgumentException("ali! $dependencies")
             }
-            add(classLoader)
+            put(plugin::class.java.packageName, classLoader)
         }
     }
 
     override fun loadClass(name: String): Class<*> {
         if (name.startsWith("com.ali")) return super.loadClass(name)
-        for (classLoader in classLoaders) {
+        for ((prefix, classLoader) in classLoaders) {
+            if (name.startsWith(prefix).not()) continue
             val oc = ClassUtils.overrideThreadContextClassLoader(classLoader)
             return try {
                 classLoader.loadClass(name)
@@ -42,7 +43,7 @@ public class SpringBootMiraiClassLoader(starter: JvmPlugin) :
 
     override fun getResource(name: String): URL? {
         if (name.startsWith("com/ali")) return super.getResource(name)
-        for (classLoader in classLoaders) {
+        for ((_, classLoader) in classLoaders) {
             val oc = ClassUtils.overrideThreadContextClassLoader(classLoader)
             return try {
                 classLoader.getResource(name) ?: continue
@@ -57,7 +58,7 @@ public class SpringBootMiraiClassLoader(starter: JvmPlugin) :
         if (name.startsWith("com/ali")) return super.getResources(name)
         return object : Enumeration<URL> {
             val iterator = iterator<URL> {
-                for (classLoader in classLoaders) {
+                for ((_, classLoader) in classLoaders) {
                     val oc = ClassUtils.overrideThreadContextClassLoader(classLoader)
                     val enumeration = try {
                         classLoader.getResources(name) ?: continue
