@@ -16,7 +16,8 @@ public object SpringBootMiraiDemo : KotlinPlugin(
 ) {
 
     override fun onEnable() {
-        println(SpringBootMiraApplication.context)
+        val configuration = SpringBootMiraApplication.context.getBean(SpringBootMiraiDemoConfiguration::class.java)
+        logger.warning(configuration.uuid.toString())
     }
 
     override fun onDisable() {
