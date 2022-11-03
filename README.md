@@ -49,8 +49,8 @@ pluginManagement {
 }
 ```
 
-**请使用 `spring.factories` 的形式添加 EnableAutoConfiguration 配置**   
-例如 [spring.factories](spring-boot-mirai-demo/src/main/resources/META-INF/spring.factories)
+**请使用 `AutoConfiguration.imports` 的形式添加 EnableAutoConfiguration 配置**   
+例如 [imports](spring-boot-mirai-demo/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports)
 
 ## 示例代码
 

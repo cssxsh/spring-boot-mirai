@@ -1,4 +1,4 @@
-package xyz.cssxsh.mirai.spring.demo
+package xyz.cssxsh.demo.spring
 
 import net.mamoe.mirai.console.plugin.jvm.*
 import xyz.cssxsh.mirai.spring.*
@@ -21,6 +21,6 @@ public object SpringBootMiraiDemo : KotlinPlugin(
     }
 
     override fun onDisable() {
-
+        //
     }
 }

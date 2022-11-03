@@ -1,10 +1,9 @@
-package xyz.cssxsh.mirai.spring.demo
+package xyz.cssxsh.demo.spring
 
 import org.slf4j.*
 import org.springframework.context.annotation.*
 import java.util.UUID
 
-@Configuration
 @ComponentScan
 public open class SpringBootMiraiDemoConfiguration {
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
