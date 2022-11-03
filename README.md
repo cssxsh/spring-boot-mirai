@@ -2,7 +2,7 @@
 
 > Spring Boot 3.0 前置插件
 
-**注意 本插件具有一定的娱乐兴致，不喜勿喷**
+**注意 本插件具有一定的娱乐性质，不喜勿喷**
 
 [Mirai Console](https://github.com/mamoe/mirai-console) 的前置插件，用于 Spring Boot 的初始化  
 
