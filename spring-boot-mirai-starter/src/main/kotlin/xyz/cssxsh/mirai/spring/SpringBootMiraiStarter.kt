@@ -41,12 +41,12 @@ public object SpringBootMiraiStarter : KotlinPlugin(
     }
 
     override fun onEnable() {
-        SpringBootMiraApplication.context = runApplication<SpringBootMiraApplication> {
+        SpringBootMiraiApplication.context = runApplication<SpringBootMiraiApplication> {
             resourceLoader = DefaultResourceLoader(SpringBootMiraiClassLoader(this@SpringBootMiraiStarter))
         }
     }
 
     override fun onDisable() {
-        SpringBootMiraApplication.context.close()
+        SpringBootMiraiApplication.context.close()
     }
 }

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.*
 import org.springframework.context.*
 
 @SpringBootApplication
-public class SpringBootMiraApplication {
+public class SpringBootMiraiApplication {
 
     public companion object {
         @JvmStatic
@@ -14,7 +14,7 @@ public class SpringBootMiraApplication {
 
         @JvmStatic
         public fun main(vararg args: String) {
-            context = runApplication<SpringBootMiraApplication>(args = args)
+            context = runApplication<SpringBootMiraiApplication>(args = args)
         }
     }
 }
