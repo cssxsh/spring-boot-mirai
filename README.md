@@ -50,11 +50,11 @@ pluginManagement {
 ```
 
 **请使用 `AutoConfiguration.imports` 的形式添加 EnableAutoConfiguration 配置**   
-例如 [imports](spring-boot-mirai-demo/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports)
+例如 [imports](spring-boot-mirai-onebot/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports)
 
 ## 示例代码
 
-* [spring-boot-mirai-demo](spring-boot-mirai-demo)
+* [spring-boot-mirai-onebot](spring-boot-mirai-onebot)
 
 ## 安装
 

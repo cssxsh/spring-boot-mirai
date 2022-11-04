@@ -8,4 +8,4 @@ pluginManagement {
 }
 
 include("spring-boot-mirai-starter")
-include("spring-boot-mirai-demo")
+include("spring-boot-mirai-onebot")
