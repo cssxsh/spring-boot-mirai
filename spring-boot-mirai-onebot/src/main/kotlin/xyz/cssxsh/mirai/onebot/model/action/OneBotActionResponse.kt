@@ -1,15 +1,22 @@
 package xyz.cssxsh.mirai.onebot.model.action
 
+import kotlinx.serialization.*
+
 
 /**
  * [action-response data](https://12.onebot.dev/connect/data-protocol/action-response/)
 */
-public interface OneBotActionResponse {
+@Serializable
+public class OneBotActionResponse<T>(
+    @SerialName("status")
+    public val status: String,
     /**
-     * [example](https://12.onebot.dev/connect/data-protocol/action-response/#_3)
+     * [retcode](https://12.onebot.dev/connect/data-protocol/action-response/#_3)
      */
-    public val status: String
-    public val retcode: String
-    public val message: String
-    public val data: Any
-}
+    @SerialName("retcode")
+    public val retcode: Long,
+    @SerialName("message")
+    public val message: String,
+    @SerialName("data")
+    public val data: T
+)

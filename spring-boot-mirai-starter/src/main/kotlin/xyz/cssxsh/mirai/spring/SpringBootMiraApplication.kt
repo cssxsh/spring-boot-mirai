@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.*
 import org.springframework.context.*
 
 @SpringBootApplication
-public open class SpringBootMiraApplication {
+public class SpringBootMiraApplication {
 
     public companion object {
         @JvmStatic

@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.7.20"
+    kotlin("plugin.spring") version "1.7.20"
     kotlin("plugin.serialization") version "1.7.20"
 
     id("net.mamoe.mirai-console") version "2.13.0-RC2"
@@ -24,6 +25,8 @@ dependencies {
     compileOnly(project(":spring-boot-mirai-starter"))
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation(kotlin("test"))
+    testImplementation(project(":spring-boot-mirai-starter"))
+    testImplementation("net.mamoe:mirai-core-mock:2.13.0-RC2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

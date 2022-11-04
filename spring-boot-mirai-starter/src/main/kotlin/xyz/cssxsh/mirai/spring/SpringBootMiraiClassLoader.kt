@@ -17,7 +17,7 @@ public class SpringBootMiraiClassLoader(starter: JvmPlugin) :
             if (plugin.description.dependencies.none { it.id == starter.id }) continue
             val classLoader = plugin::class.java.classLoader
             val dependencies = classLoader.getResource("META-INF/mirai-console-plugin/dependencies-private.txt")
-                ?: throw FileNotFoundException("dependencies-private.txt")
+                ?: throw FileNotFoundException("dependencies-private.txt in ${plugin.id}")
             if (dependencies.readText().lines().any { it.startsWith("com.ali")  }) {
                 throw IllegalArgumentException("ali! $dependencies")
             }
