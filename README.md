@@ -6,7 +6,7 @@
 
 [Mirai Console](https://github.com/mamoe/mirai-console) 的前置插件，用于 Spring Boot 的初始化  
 
-[![maven-central](https://img.shields.io/maven-central/v/xyz.cssxsh.mirai/spring-boot-mirai)](https://search.maven.org/artifact/xyz.cssxsh.mirai/spring-boot-mirai)
+[![maven-central](https://img.shields.io/maven-central/v/xyz.cssxsh.mirai/spring-boot-mirai-starter)](https://search.maven.org/artifact/xyz.cssxsh.mirai/spring-boot-mirai-starter)
 
 ## 数据库支持
 
