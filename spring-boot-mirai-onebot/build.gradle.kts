@@ -34,6 +34,10 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
+springBoot {
+    mainClass.set("xyz.cssxsh.mirai.spring.SpringBootMiraiApplication")
+}
+
 mirai {
     jvmTarget = JavaVersion.VERSION_17
     setupConsoleTestRuntime {
