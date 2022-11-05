@@ -7,9 +7,9 @@ import kotlinx.serialization.*
  * [action-response data](https://12.onebot.dev/connect/data-protocol/action-response/)
 */
 @Serializable
-public class OneBotActionResponse<T>(
+public class OneBotActionResponse<T: Any>(
     @SerialName("status")
-    public val status: String,
+    public val status: OneBotActionStatus,
     /**
      * [retcode](https://12.onebot.dev/connect/data-protocol/action-response/#_3)
      */

@@ -24,7 +24,8 @@ public class OneBotJsonHttpMessageConverter : KotlinSerializationStringHttpMessa
         format: Json,
         outputMessage: HttpOutputMessage
     ) {
-        if (`object` is OneBotActionResponse<*>) {
+        @OptIn(ExperimentalSerializationApi::class)
+        if (`object` is OneBotActionResponse<*> && serializer.descriptor.serialName != `object`::class.qualifiedName) {
             val target = OneBotActionResponse.serializer(serializer)
             @Suppress("UNCHECKED_CAST")
             super.writeInternal(`object`, target as KSerializer<Any>, format, outputMessage)
