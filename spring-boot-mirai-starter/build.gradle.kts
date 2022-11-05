@@ -5,9 +5,9 @@ plugins {
 
     id("net.mamoe.mirai-console") version "2.13.0-RC2"
     id("org.springframework.boot") version "3.0.0-RC1"
+    id("io.spring.dependency-management") version "1.1.0"
     id("me.him188.maven-central-publish") version "1.0.0-dev-3"
 }
-apply(plugin = "io.spring.dependency-management")
 
 mavenCentralPublish {
     useCentralS01()
