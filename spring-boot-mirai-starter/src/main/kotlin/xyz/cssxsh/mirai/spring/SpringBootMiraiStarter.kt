@@ -1,52 +1,31 @@
 package xyz.cssxsh.mirai.spring
 
-import net.mamoe.mirai.console.*
-import net.mamoe.mirai.console.data.*
-import net.mamoe.mirai.console.extension.*
-import net.mamoe.mirai.console.internal.data.builtins.*
 import net.mamoe.mirai.console.plugin.jvm.*
-import net.mamoe.mirai.console.util.*
-import net.mamoe.mirai.utils.*
-import org.springframework.boot.*
-import org.springframework.core.io.*
-import java.io.*
 
-public object SpringBootMiraiStarter : KotlinPlugin(
+@PublishedApi
+internal object SpringBootMiraiStarter : KotlinPlugin(
     JvmPluginDescription(
         id = "xyz.cssxsh.spring-boot-mirai-starter",
-        name = "spring-shit-starter",
+        name = "spring-mirai-starter",
         version = "1.0.0",
     ) {
         author("cssxsh")
     }
 ) {
 
-    init {
-        @Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE", "UNCHECKED_CAST")
-        @OptIn(ConsoleExperimentalApi::class, ConsoleFrontEndImplementation::class)
-        with(DataScope.get(PluginDependenciesConfig::class)) {
-            val field = findBackingFieldValue(::repoLoc) as Value<List<String>>
-            field.value += "https://repo.spring.io/milestone"
-        }
-    }
-
-    override fun PluginComponentStorage.onLoad() {
-        val yml = configFolder.parentFile.resolve("application.yml")
-        if (yml.exists().not()) {
-            val url = jvmPluginClasspath.pluginClassLoader.getResource("application.yml")
-                ?: throw FileNotFoundException("application.yml")
-            yml.writeBytes(url.readBytes())
-        }
-        logger.info { "SpringBoot Application Configuration File at:\n ${yml.path}" }
-    }
+    private lateinit var spring: Thread
 
     override fun onEnable() {
-        SpringBootMiraiApplication.context = runApplication<SpringBootMiraiApplication> {
-            resourceLoader = DefaultResourceLoader(SpringBootMiraiClassLoader(this@SpringBootMiraiStarter))
+        spring = Thread(SpringBootMiraiApplication, "spring-boot-mirai")
+        spring.contextClassLoader = SpringBootMiraiClassLoader(SpringBootMiraiStarter)
+        spring.uncaughtExceptionHandler = Thread.UncaughtExceptionHandler { _, cause ->
+            logger.error(cause)
         }
+        spring.start()
     }
 
     override fun onDisable() {
         SpringBootMiraiApplication.context.close()
+        spring.interrupt()
     }
 }

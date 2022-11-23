@@ -7,7 +7,7 @@ import org.springframework.context.*
 @SpringBootApplication
 public class SpringBootMiraiApplication {
 
-    public companion object {
+    public companion object Loader : Runnable {
         @JvmStatic
         public lateinit var context: ConfigurableApplicationContext
             internal set
@@ -16,5 +16,7 @@ public class SpringBootMiraiApplication {
         public fun main(vararg args: String) {
             context = runApplication<SpringBootMiraiApplication>(args = args)
         }
+
+        override fun run(): Unit = main()
     }
 }
