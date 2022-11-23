@@ -23,7 +23,8 @@ mavenCentralPublish {
 dependencies {
     api("org.springframework.boot:spring-boot-starter")
     api("org.springframework.boot:spring-boot-starter-web")
-    api("org.springframework.boot:spring-boot-starter-websocket")
+    api("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.0-RC2")
+    //
     testImplementation(kotlin("test"))
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
