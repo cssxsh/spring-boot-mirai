@@ -22,7 +22,6 @@
 ```kotlin
 plugins {
     id("org.springframework.boot") version "3.0.0"
-    id("io.spring.dependency-management") version "1.1.0"
 }
 
 repositories {
@@ -31,6 +30,7 @@ repositories {
 
 dependencies {
     compileOnly("xyz.cssxsh.mirai:spring-boot-mirai-starter:${version}")
+    implementation(platform("org.springframework.boot:spring-boot-dependencies:3.0.0"))
 }
 
 // Spring Boot 3.0 需要 jdk-17

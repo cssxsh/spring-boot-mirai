@@ -3,9 +3,8 @@ plugins {
     kotlin("plugin.spring") version "1.7.20"
     kotlin("plugin.serialization") version "1.7.20"
 
-    id("org.springframework.boot") version "3.0.0"
-    id("io.spring.dependency-management") version "1.1.0"
     id("net.mamoe.mirai-console") version "2.13.0-RC2"
+    id("org.springframework.boot") version "3.0.0"
     id("me.him188.maven-central-publish") version "1.0.0-dev-3"
 }
 
@@ -25,6 +24,7 @@ dependencies {
     compileOnly("net.mamoe:mirai-console-compiler-common")
     // xyz.cssxsh.mirai:spring-boot-mirai-starter
     compileOnly(project(":spring-boot-mirai-starter"))
+    implementation(platform("org.springframework.boot:spring-boot-dependencies:3.0.0"))
     compileOnly("org.springframework.boot:spring-boot-configuration-processor")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     //

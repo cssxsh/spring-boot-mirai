@@ -5,7 +5,6 @@ plugins {
 
     id("net.mamoe.mirai-console") version "2.13.0-RC2"
     id("org.springframework.boot") version "3.0.0"
-    id("io.spring.dependency-management") version "1.1.0"
     id("me.him188.maven-central-publish") version "1.0.0-dev-3"
 }
 
@@ -23,6 +22,7 @@ mavenCentralPublish {
 dependencies {
     implementation(platform("net.mamoe:mirai-bom:2.13.0"))
     compileOnly("net.mamoe:mirai-console-compiler-common")
+    implementation(platform("org.springframework.boot:spring-boot-dependencies:3.0.0"))
     api("org.springframework.boot:spring-boot-starter")
     api("org.springframework.boot:spring-boot-starter-web")
     api("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.0")
