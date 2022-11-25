@@ -21,12 +21,12 @@
 **build.gradle.kts**
 ```kotlin
 plugins {
-    id("org.springframework.boot") version "3.0.0-RC1"
+    id("org.springframework.boot") version "3.0.0"
+    id("io.spring.dependency-management") version "1.1.0"
 }
 
 repositories {
     mavenCentral()
-    maven(url = "https://repo.spring.io/milestone")
 }
 
 dependencies {
@@ -39,17 +39,7 @@ mirai {
 }
 ```
 
-**settings.gradle.kts**
-```kotlin
-pluginManagement {
-    repositories {
-        maven(url = "https://repo.spring.io/milestone")
-        gradlePluginPortal()
-    }
-}
-```
-
-**请使用 `AutoConfiguration.imports` 的形式添加 EnableAutoConfiguration 配置**   
+**Spring Boot 3.0 中需要以 `AutoConfiguration.imports` 的形式添加 EnableAutoConfiguration 配置**   
 例如 [imports](spring-boot-mirai-onebot/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports)
 
 ## 示例代码

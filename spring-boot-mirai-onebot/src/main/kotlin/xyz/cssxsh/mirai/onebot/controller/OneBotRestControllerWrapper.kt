@@ -14,7 +14,7 @@ import java.sql.SQLException
 import java.util.concurrent.CancellationException
 
 @RestControllerAdvice
-public class OneBotRestControllerAdvice : ResponseBodyAdvice<Any> {
+public class OneBotRestControllerWrapper : ResponseBodyAdvice<Any> {
 
     override fun supports(returnType: MethodParameter, converterType: Class<out HttpMessageConverter<*>>): Boolean {
         return true

@@ -1,17 +1,20 @@
 package xyz.cssxsh.mirai.onebot.config;
 
-import lombok.*;
 import org.springframework.boot.context.properties.*;
+import org.springframework.boot.context.properties.bind.*;
 
-@Data
+/**
+ * 心跳配置
+ *
+ * @param enabled  是否启用心跳
+ * @param interval 心跳间隔，单位：毫秒，必须大于 0
+ */
 @ConfigurationProperties(prefix = "onebot.meta.heartbeat")
-public class OneBotMetaHeartbeatConfiguration {
-    /**
-     * 是否启用心跳
-     */
-    private Boolean enabled = true;
-    /**
-     * 心跳间隔，单位：毫秒，必须大于 0
-     */
-    private Long interval = 180_000L;
+public record OneBotMetaHeartbeatConfiguration(
+        @DefaultValue(value = "true")
+        Boolean enabled,
+        @DefaultValue(value = "180000")
+        Long interval
+) {
+    // ...
 }

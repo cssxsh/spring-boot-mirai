@@ -3,8 +3,7 @@ plugins {
     kotlin("plugin.spring") version "1.7.20"
     kotlin("plugin.serialization") version "1.7.20"
 
-    id("io.freefair.lombok") version "6.5.1"
-    id("org.springframework.boot") version "3.0.0-RC1"
+    id("org.springframework.boot") version "3.0.0"
     id("io.spring.dependency-management") version "1.1.0"
     id("net.mamoe.mirai-console") version "2.13.0-RC2"
     id("me.him188.maven-central-publish") version "1.0.0-dev-3"
@@ -22,15 +21,17 @@ mavenCentralPublish {
 }
 
 dependencies {
+    implementation(platform("net.mamoe:mirai-bom:2.13.0"))
+    compileOnly("net.mamoe:mirai-console-compiler-common")
     // xyz.cssxsh.mirai:spring-boot-mirai-starter
     compileOnly(project(":spring-boot-mirai-starter"))
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
     compileOnly("org.springframework.boot:spring-boot-configuration-processor")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     //
     testImplementation(kotlin("test"))
     testImplementation(project(":spring-boot-mirai-starter"))
-    testImplementation("net.mamoe:mirai-core-mock:2.13.0-RC2")
+    testImplementation("net.mamoe:mirai-logging-slf4j")
+    testImplementation("net.mamoe:mirai-core-mock")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
@@ -41,7 +42,7 @@ springBoot {
 mirai {
     jvmTarget = JavaVersion.VERSION_17
     setupConsoleTestRuntime {
-        workingDir = (parent ?: project).projectDir.resolve("debug-sandbox")
+        workingDir = rootProject.projectDir.resolve("debug-sandbox")
     }
 }
 

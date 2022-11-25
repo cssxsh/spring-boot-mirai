@@ -18,9 +18,7 @@ internal object SpringBootMiraiStarter : KotlinPlugin(
     override fun onEnable() {
         spring = Thread(SpringBootMiraiApplication, "spring-boot-mirai")
         spring.contextClassLoader = SpringBootMiraiClassLoader(SpringBootMiraiStarter)
-        spring.uncaughtExceptionHandler = Thread.UncaughtExceptionHandler { _, cause ->
-            logger.error(cause)
-        }
+        spring.uncaughtExceptionHandler = Thread.UncaughtExceptionHandler { _, cause -> logger.error(cause) }
         spring.start()
     }
 

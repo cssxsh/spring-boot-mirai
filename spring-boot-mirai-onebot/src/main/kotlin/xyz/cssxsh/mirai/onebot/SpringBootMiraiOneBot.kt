@@ -2,7 +2,8 @@ package xyz.cssxsh.mirai.onebot
 
 import net.mamoe.mirai.console.plugin.jvm.*
 
-public object SpringBootMiraiOneBot : KotlinPlugin(
+@PublishedApi
+internal object SpringBootMiraiOneBot : KotlinPlugin(
     JvmPluginDescription(
         id = "xyz.cssxsh.spring-boot-mirai-onebot",
         name = "spring-onebot",
