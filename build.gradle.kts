@@ -1,12 +1,11 @@
 allprojects {
     group = "xyz.cssxsh.mirai"
-    version = "1.0.0-M1"
+    version = "1.0.0"
 }
 
 subprojects {
     repositories {
-        mavenLocal()
+        maven("https://repo.huaweicloud.com/repository/maven")
         mavenCentral()
-        maven(url = "https://repo.spring.io/milestone")
     }
 }

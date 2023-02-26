@@ -5,6 +5,7 @@ import net.mamoe.mirai.console.plugin.*
 import net.mamoe.mirai.console.plugin.description.*
 import net.mamoe.mirai.console.plugin.jvm.*
 import org.springframework.beans.factory.annotation.*
+import org.springframework.boot.*
 import org.springframework.web.bind.annotation.*
 import xyz.cssxsh.mirai.spring.*
 import java.util.*
@@ -18,9 +19,9 @@ public class MiraiController {
         return MiraiConsole.version.toString()
     }
 
-    @GetMapping("/get_plugin_version")
+    @GetMapping("/get_spring_boot_version")
     public fun getPluginVersion(): String {
-        return SpringBootMiraiStarter.version.toString()
+        return SpringBootVersion.getVersion()
     }
 
     @GetMapping("/get_all_plugins")
@@ -35,11 +36,13 @@ public class MiraiController {
     }
 
     @GetMapping("/get_supported_plugins")
-    public fun getSupportedPlugins(): Set<String> {
-        val plugins = HashSet<String>()
+    public fun getSupportedPlugins(): Map<String, String> {
+        val plugins = HashMap<String, String>()
         for (plugin in PluginManager.plugins) {
             if (plugin !is JvmPlugin) continue
-            if (plugin.description.dependencies.none { it.id == SpringBootMiraiStarter.description.id }) continue
+            if (plugin::class.java.packageName !in SpringBootMiraiStartupExtension.classLoaders) continue
+
+            plugins[plugin.description.id] = plugin::class.java.packageName
         }
 
         return plugins

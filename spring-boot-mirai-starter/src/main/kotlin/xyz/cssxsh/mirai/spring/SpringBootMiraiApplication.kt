@@ -14,7 +14,9 @@ public class SpringBootMiraiApplication {
 
         @JvmStatic
         public fun main(vararg args: String) {
-            context = runApplication<SpringBootMiraiApplication>(args = args)
+            context = runApplication<SpringBootMiraiApplication>(args = args) {
+                setBannerMode(Banner.Mode.LOG)
+            }
         }
 
         override fun run(): Unit = main()

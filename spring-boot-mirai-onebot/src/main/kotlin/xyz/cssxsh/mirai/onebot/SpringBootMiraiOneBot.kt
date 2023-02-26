@@ -1,5 +1,6 @@
 package xyz.cssxsh.mirai.onebot
 
+import net.mamoe.mirai.console.extension.*
 import net.mamoe.mirai.console.plugin.jvm.*
 
 @PublishedApi
@@ -10,10 +11,12 @@ internal object SpringBootMiraiOneBot : KotlinPlugin(
         version = "1.0.0",
     ) {
         author("cssxsh")
-
-        dependsOn("xyz.cssxsh.spring-boot-mirai-starter")
     }
 ) {
+
+    override fun PluginComponentStorage.onLoad() {
+        xyz.cssxsh.mirai.spring.SpringBootMiraiStartupExtension.version
+    }
 
     override fun onEnable() {
         //
